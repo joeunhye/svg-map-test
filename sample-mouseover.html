@@ -38,10 +38,14 @@
         .mapBox {position: relative; width: 90%; margin: 0 auto;padding: 0px; height: 520px;margin: 0 auto;text-align: center;}
         .mapWrap {position:relative;height:520px; margin-bottom:60px;}
         .localZido {position: absolute;top:0; left:0;width: 506px;height:520px;/*z-index:1;*/ box-shadow: 0px 0px 23px 2px rgba(0,0,0,0.08);background-color:#fff;border:1px solid #efefef; }
-		.localZidoIn { height:390px; margin:0 auto;}
+		.localZidoIn {margin:0 auto;}
 		.localZidoIn .mapBox .mapBoxIn {padding: 30px 0;}
-        .mapDetail {position:relative;float: left;width: 58%; height:520px;margin-left:42%; background-color:#F4F6F9; border:1px solid #EEEEEE; border-left:none;}
+        .mapDetail {display: flex;align-items: center;justify-content: center;position:relative;float: left;width: 58%; height:520px;margin-left:42%; background-color:#F4F6F9; border:1px solid #EEEEEE; border-left:none;}
 
+        @media screen and (max-width: 1024px) {
+            .localZido {position: relative;}
+            .mapDetail {overflow: auto; width: 100%;margin: 0;}
+        }
     </style>
 </head>
 <body>
@@ -120,8 +124,8 @@
         $(document).ready(function() {
             $('.land').mouseover(function(e) {
                 $('.data-tag').remove();
-                var moveX = e.clientX;
-                var moveY = e.clientY;
+                var moveX = e.pageX;
+                var moveY = e.pageY;
 
                 let item = document.createElement('div');
                 item.innerHTML = $(this).data('name');
@@ -132,8 +136,8 @@
             })
 
             $('.land').mousemove(function(e) {
-                var moveX = e.clientX;
-                var moveY = e.clientY;
+                var moveX = e.pageX;
+                var moveY = e.pageY;
                 $('.data-tag').css({
                     left: `${moveX + 10}px`,
                     top: `${moveY + 10}px`
